@@ -3,11 +3,11 @@
  min-height: 100vh;
 
  @include sm{
-  @include boxFixde(100%, 20px);
+  @include boxFixed(100%, 20px);
  }
 
  @include md{
-  @include boxFixde(460px);
+  @include boxFixed(460px);
  }
 
 }
