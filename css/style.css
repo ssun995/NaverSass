@@ -389,4 +389,32 @@ body {
   font-size: 1rem;
 }
 
+.container {
+  background-color: yellow;
+  width: 460px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  width: 460px;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+}
+@media screen and (max-wdith: 767px) {
+  .header {
+    background-color: blueviolet;
+  }
+}
+@media screen and (min-wdith: 768px) {
+  .header {
+    background-color: blue;
+  }
+}
+
 /*# sourceMappingURL=style.css.map */

@@ -3,3 +3,18 @@ body{
   font-weight: 400;
   font-size: rem(16px);
 }
+
+.container{
+  background-color: yellow;
+  @include boxFixed;
+}
+.header{
+  @include boxFixed;
+  background-color: red;
+  @include sm{
+    background-color: blueviolet;
+  }
+  @include md{
+    background-color: blue;
+  }
+}

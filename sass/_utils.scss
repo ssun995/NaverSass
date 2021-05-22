@@ -1,7 +1,9 @@
-$rootUnit: 16px !default;
+$rootUnit: 16px !default; //rootUnit의 기본값은 16px이지만 지정된 값이 있다면 지정된 값으로 적용.
+$breakpoint: 768px; //테블릿 사이즈
 
+//@function : 블록가로 안의 연산값을 적용
 @function removeUnit($value){
- @return ($value / ($value * 0 + 1));
+ @return ($value / ($value * 0 + 1)); //연산오류 방지를 위해 단위 삭제 (곱하기 핳 때 양쪽에 단위가 모두 있으면 에러가 남.)
 }
 
 @function rem($value, $base:$rootUnit){
@@ -10,4 +12,54 @@ $rootUnit: 16px !default;
 
 @function em($value, $base:$rootUnit){
  @return (removeUnit($value / $base)) * 1em;
+}
+
+//@mixin : 블록가로 안의 내용(스타일)을 적용
+@mixin clearfix {
+ &::after{
+  content: "";
+  display: block;
+  clear: both;
+ }
+}
+
+@mixin marginX($marginValue: auto) {
+ margin-left: $marginValue;
+ margin-right: $marginValue;
+}
+
+@mixin boxFull($width: 100vw) {
+ width: $width;
+ position: relative;
+ left: 50%;
+ margin-left: -$width / 2;
+ @content;
+}
+
+@mixin boxFixed($width: 460px, $paddingX: 0) {
+ width: $width;
+ padding-left: $paddingX;
+ padding-right: $paddingX;
+ @include marginX;
+ @content;
+}
+
+// 디바이스 크기에 따른 미디어쿼리
+@mixin sm {
+ @media screen and (max-wdith: $breakpoint - 1) {
+  @content;
+ }
+}
+@mixin md {
+ @media screen and (min-wdith: $breakpoint) {
+  @content;
+ }
+}
+
+@mixin flexBox($direction: row, $justify: flex-start, $align: stretch, $wrap: nowrap) {
+ display: flex;
+ flex-direction: $direction;
+ justify-content: $justify;
+ align-items: $align;
+ flex-wrap: $wrap;
 }
