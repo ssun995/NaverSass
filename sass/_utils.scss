@@ -50,6 +50,7 @@ $breakpoint: 768px; //테블릿 사이즈
   @content;
  }
 }
+
 @mixin md {
  @media screen and (min-wdith: $breakpoint) {
   @content;

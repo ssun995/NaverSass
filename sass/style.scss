@@ -1,4 +1,6 @@
-@import "./normalize"; //브라우저
+@import "./normalize"; //브라우저 초기화
 @import "./fonts";
 @import "./utils";
-@import "./base"; 
+@import "./variable";
+@import "./base";
+@import "./login";

@@ -1,0 +1,35 @@
+.container {
+ @include flexBox(column);
+ min-height: 100vh;
+
+ @include sm{
+  @include boxFixde(100%, 20px);
+ }
+
+ @include md{
+  @include boxFixde(460px);
+ }
+
+}
+
+.header{
+ &__logo{
+  @include marginX;
+  @include sm{
+   width: percentage(164px / 320px);
+   margin-top: em(70px);
+   margin-bottom: em(45px);
+  }
+
+  @include md{
+   width: 230px;
+   margin-top: em(100px);
+   margin-bottom: em(50px);
+  }
+
+ }
+}
+
+.main{
+ flex-grow: 1;
+}
