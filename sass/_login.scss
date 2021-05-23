@@ -37,6 +37,10 @@
  legend{
   @include a11y;
  }
+
+ &__container{
+ @include flexBox(column);
+ }
 }
 
 .userEmail, .userPassword{
@@ -75,21 +79,67 @@
  }
 }
 
-.formControl{
- &__button{
-  text-align: center;
-  color: $default;
-  font-weight: 700;
-  padding-top: em(16px);
-  padding-bottom: em(16px);
-  background-color: $primary;
+//로그인 상태유지 및 IP보안
+.userSelectInfo{
+ order: 1;
+ @include flexBox;
+}
 
-  @include sm{
-   @include boxFixed(100%, 20px);
+.ipSecurityLink{
+ margin-left: auto;
+ text-decoration: none;
+ color: inherit;
+}
+
+//보안 on off
+.ipSecurity{
+
+ &Checkbox{ // a11y 사용 안됨 : a11y에 있는 clip 속성이 포커스가 가는 것을 방해
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+
+  &:checked + label::before{
+   content: 'ON';
+   color: $primary;
   }
- 
-  @include md{
-   @include boxFixed(460px);
+
+  &:focus + label::before{
+   box-shadow: 0 0 0 2px $outline; // boxshadow를 사용하면 border-radius 효과를 줄 수 있음
+   border-radius: 2px;
   }
+ }
+
+ &Label{
+  outline: em(2px) solid inherit;
+
+  &::before{
+   content: 'OFF';
+   font-weight: 700;
+   text-align: right;
+   display: inline-block;
+   width: em(36px);
+   padding: 0 em(4px);
+   margin-left: em(8px);
+   color: $secondary;
+   cursor: pointer;
+  }
+  
+ }
+}
+
+//로그인 버튼
+.loginButton{
+ margin: em(10px) 0;
+ background-color: $primary;
+ color: $default;
+
+ .formControl__button{
+  background-color: inherit;
+  color: inherit;
+  width: 100%;
+  padding: em(19px) em(16px);
+  cursor: pointer;
  }
 }
