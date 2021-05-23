@@ -75,3 +75,15 @@ $breakpoint: 768px; //테블릿 사이즈
  clip: rect(0,0,0,0);
  clip-path: inset(50%);
 }
+
+@mixin a11yFocus {
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ opacity: 0;
+}
+
+@mixin custumOutline {
+ box-shadow: 0 0 0 2px $outline; // boxshadow를 사용하면 border-radius 효과를 줄 수 있음
+ border-radius: 2px;
+}

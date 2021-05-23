@@ -13,7 +13,12 @@
 
 .header{
  &__logo{
+  a{
+   display: inline-block
+  }
+
   @include marginX;
+
   @include sm{
    width: percentage(164px / 320px);
    margin-top: em(70px);
@@ -30,6 +35,15 @@
 
 .main{
  flex-grow: 1;
+}
+
+//아웃라인 재설정
+:focus{
+ outline: 0;
+}
+
+:focus-visible{
+ @include custumOutline;
 }
 
 //로그인폼
@@ -66,6 +80,10 @@
    background-color: rgba($primary, 0.05);
   }
  }
+
+ &__input:focus-visible{
+  box-shadow: none;
+ }
 }
 
 .errorMessage{
@@ -91,28 +109,54 @@
  color: inherit;
 }
 
+//로그인 상태 유지
+.loginState{
+
+ &__checkbox{ // a11y 사용 안됨 : a11y에 있는 clip 속성이 포커스되는 것을 방해
+  @include a11yFocus;
+ }
+
+ &__label{
+  @include flexBox(row, flex-start, center);
+  cursor: pointer;
+  
+  &::before{
+   content: '';
+   display: inline-block;
+   width: em(20px);
+   height: em(20px);
+   background: url(./../images/unchecked.svg) no-repeat;
+   background-size: cover;
+   margin-right: em(8px);
+  }
+ }
+
+  &__checkbox:checked + &__label::before{
+   background-image: url(./../images/checked.svg);
+  }
+
+  &__checkbox:focus + &__label::before{
+   @include custumOutline;
+  }
+}
+
 //보안 on off
 .ipSecurity{
 
- &Checkbox{ // a11y 사용 안됨 : a11y에 있는 clip 속성이 포커스가 가는 것을 방해
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  opacity: 0;
+ &__checkbox{ // a11y 사용 안됨 : a11y에 있는 clip 속성이 포커스되는 것을 방해
+  @include a11yFocus;
 
-  &:checked + label::before{
+  &:checked + &__label::before{
    content: 'ON';
    color: $primary;
   }
 
-  &:focus + label::before{
-   box-shadow: 0 0 0 2px $outline; // boxshadow를 사용하면 border-radius 효과를 줄 수 있음
-   border-radius: 2px;
+  &:focus + &__label::before{
+   @include custumOutline;
   }
  }
 
- &Label{
-  outline: em(2px) solid inherit;
+ &__label{
 
   &::before{
    content: 'OFF';
@@ -125,7 +169,6 @@
    color: $secondary;
    cursor: pointer;
   }
-  
  }
 }
 

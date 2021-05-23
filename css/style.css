@@ -445,6 +445,9 @@ body {
   margin-left: auto;
   margin-right: auto;
 }
+.header__logo a {
+  display: inline-block;
+}
 @media screen and (max-width: 767px) {
   .header__logo {
     width: 51.25%;
@@ -462,6 +465,15 @@ body {
 
 .main {
   flex-grow: 1;
+}
+
+:focus {
+  outline: 0;
+}
+
+:focus-visible {
+  box-shadow: 0 0 0 2px #24388d;
+  border-radius: 2px;
 }
 
 .loginForm legend {
@@ -501,6 +513,9 @@ body {
   outline: 0;
   background-color: rgba(3, 207, 93, 0.05);
 }
+.formControl__input:focus-visible {
+  box-shadow: none;
+}
 
 .errorMessage {
   color: #FF1414;
@@ -526,24 +541,52 @@ body {
   color: inherit;
 }
 
-.ipSecurityCheckbox {
+.loginState__checkbox {
   position: absolute;
   width: 1px;
   height: 1px;
   opacity: 0;
 }
-.ipSecurityCheckbox:checked + label::before {
-  content: "ON";
-  color: #03CF5D;
+.loginState__label {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: nowrap;
+  cursor: pointer;
 }
-.ipSecurityCheckbox:focus + label::before {
+.loginState__label::before {
+  content: "";
+  display: inline-block;
+  width: 1.25em;
+  height: 1.25em;
+  background: url(./../images/unchecked.svg) no-repeat;
+  background-size: cover;
+  margin-right: 0.5em;
+}
+.loginState__checkbox:checked + .loginState__label::before {
+  background-image: url(./../images/checked.svg);
+}
+.loginState__checkbox:focus + .loginState__label::before {
   box-shadow: 0 0 0 2px #24388d;
   border-radius: 2px;
 }
-.ipSecurityLabel {
-  outline: 0.125em solid inherit;
+
+.ipSecurity__checkbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
 }
-.ipSecurityLabel::before {
+.ipSecurity__checkbox:checked + .ipSecurity__checkbox__label::before {
+  content: "ON";
+  color: #03CF5D;
+}
+.ipSecurity__checkbox:focus + .ipSecurity__checkbox__label::before {
+  box-shadow: 0 0 0 2px #24388d;
+  border-radius: 2px;
+}
+.ipSecurity__label::before {
   content: "OFF";
   font-weight: 700;
   text-align: right;
