@@ -9,7 +9,6 @@
  @include md{
   @include boxFixed(460px);
  }
-
 }
 
 .header{
@@ -26,10 +25,71 @@
    margin-top: em(100px);
    margin-bottom: em(50px);
   }
-
  }
 }
 
 .main{
  flex-grow: 1;
+}
+
+//로그인폼
+.loginForm{
+ legend{
+  @include a11y;
+ }
+}
+
+.userEmail, .userPassword{
+ margin-bottom: em(10px);
+}
+
+.formControl{
+ &User{
+  border: 1px solid $secondary;
+  padding: em(9px);
+
+  &:focus-within{
+   border-color: $primary;
+  }
+ }
+
+ &__input{
+  width: 100%;
+  padding: em(5px);
+
+  &:focus{
+   outline: 0;
+   background-color: rgba($primary, 0.05);
+  }
+ }
+}
+
+.errorMessage{
+ color: $warning;
+ display: none;
+}
+
+.is--invalid{
+ .errorMessage{
+  display: block;
+ }
+}
+
+.formControl{
+ &__button{
+  text-align: center;
+  color: $default;
+  font-weight: 700;
+  padding-top: em(16px);
+  padding-bottom: em(16px);
+  background-color: $primary;
+
+  @include sm{
+   @include boxFixed(100%, 20px);
+  }
+ 
+  @include md{
+   @include boxFixed(460px);
+  }
+ }
 }

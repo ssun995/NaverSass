@@ -64,3 +64,14 @@ $breakpoint: 768px; //테블릿 사이즈
  align-items: $align;
  flex-wrap: $wrap;
 }
+
+@mixin a11y {
+ position: absolute;
+ width: 1px;
+ height: 1px;
+ margin: -1px;
+ overflow: hidden;
+ visibility: hidden;
+ clip: rect(0,0,0,0);
+ clip-path: inset(50%);
+}
